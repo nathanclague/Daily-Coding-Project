@@ -11,9 +11,9 @@ print("Hello, World!")
 
 //  Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
 //
-//For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+//  For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 //
-//Bonus: Can you do this in one pass?
+//  Bonus: Can you do this in one pass?
 func problem_1<T: Sequence, U: AdditiveArithmetic>
 (seq: T, k: U) -> Bool
 where T.Element == U {
@@ -35,10 +35,9 @@ where T.Element == U {
 
 //  Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
 //
-//For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+//  For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
 //
-//Follow-up: what if you can't use division?
-
+//  Follow-up: what if you can't use division?
 func problem_2(arr: [Int]) -> [Int] {
     var product = 1
     var output: [Int] = []
@@ -51,5 +50,23 @@ func problem_2(arr: [Int]) -> [Int] {
     return output
 }
 
-print(problem_2(arr: [1, 2, 3, 4, 5]))
-print(problem_2(arr: [3, 2, 1]))
+func problem_2_follow_up(arr: [Int]) -> [Int] {
+    var output: [Int] = []
+    if arr.isEmpty {
+        return output
+    }
+    for i in 0...arr.count-1 {
+        var product = 1
+        for j in 0...arr.count-1 {
+            if i != j {
+                product = product * arr[j]
+            }
+        }
+        output.append(product)
+    }
+    return output
+}
+
+print(problem_2_follow_up(arr: [1, 2, 3, 4, 5]))
+print(problem_2_follow_up(arr: [3, 2, 1]))
+print(problem_2_follow_up(arr: []))
